@@ -1,14 +1,23 @@
-def clean_eqn(dirty_equation):
-    variable = ''
-    clean_eq = ''
-    for i, j in enumerate(dirty_equation):
-        if j.isalpha():
-            variable = dirty_equation[i - 1] + dirty_equation[i]
-            clean_eq = dirty_equation[:i-1] + dirty_equation[i+1:]
-            clean_eq = clean_eq.split("=")
-            #clean_eq[0] = eval(clean_eq[0])
-            #clean_eq[1] = eval(clean_eq[1])
-            return str(clean_eq[0]) + variable + '=' + str(clean_eq[1])
+# look for the first element as x
+# if not the first one, search the whole equation until you find x
+# give it proper sign
+# make a clean equation, by excluding variable from dirty equationself.
+
+def clean_equation(dirty_equation):
+    variable = '+x' if dirty_equation[0].isalpha() else ''
+    clean_equation = dirty_equation
+    if variable == '':
+        for i, j in enumerate(dirty_equation):
+            if j.isalpha():
+                variable = dirty_equation[i-1] + j
+                clean_equation = dirty_equation[:i-1] + dirty_equation[i+1:]
+    if clean_equation == dirty_equation:
+        clean_equation = dirty_equation[2:]
+    clean_equation = clean_equation.split("=")
+    clean_equation[0] = str(eval(clean_equation[0]))
+    clean_equation[0] += variable
+    return '='.join(clean_equation)
+
 
 def solve(equation):
     split_eqn = equation.split("=")
@@ -21,4 +30,4 @@ def solve(equation):
     eqn_int[0] *= -1
     return sum(eqn_int) if (variable[0] == '+') else (-1 * sum(eqn_int))
 
-print(clean_eqn('x+3+2=6'))
+print(clean_equation('3+x+2=6'))
