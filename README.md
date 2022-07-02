@@ -6,9 +6,3 @@ we start with a couple of equations and we call them axioms which do not need to
 imagine this is an axiom (A + B)^2 = A^2 + 2AB + B^2
 now whenever eq will see an expression like this it will convert it to the expanded form
 
-
-# TODO:
-1. solve for x in degree 1 equations add or substract.
-      
-    - example: 1 + x = 3; so x = 3 - 1 = 2
-    
