@@ -1,8 +1,3 @@
-# look for the first element as x
-# if not the first one, search the whole equation until you find x
-# give it proper sign
-# make a clean equation, by excluding variable from dirty equationself.
-
 def clean_equation(dirty_equation):
     variable = '+x' if dirty_equation[0].isalpha() else ''
     clean_equation = dirty_equation
@@ -30,4 +25,3 @@ def solve(equation):
     eqn_int[0] *= -1
     return sum(eqn_int) if (variable[0] == '+') else (-1 * sum(eqn_int))
 
-print(clean_equation('3+x+2=6'))
